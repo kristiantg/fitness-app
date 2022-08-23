@@ -24,11 +24,11 @@ const DATA = [
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
         <Image style={styles.image} source={require("../assets/testExercise.png")}></Image>
-        <View style={{ marginLeft: 20, alignItems: 'flex-end' }}>
+        <View style={{ alignItems: 'flex-end' }}>
             <Text style={[styles.title, textColor]}>{item.title}</Text>
             <Text style={[styles.subTitle, textColor]}>{item.subTitle} </Text>
         </View>
-        <Ionicons name="information-circle" size={24} style={{ marginLeft: 20 }} color="black" />
+        <Ionicons name="information-circle" size={24} style={{ marginHorizontal: 5 }} color="black" />
     </TouchableOpacity>
 );
 
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#a7c9c8"
     },
     image: {
-        flex: 0.8,
+        flex: 0.5,
         resizeMode: "contain",
         height: '100%',
         width: '100%',
@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
         flexDirection: "row",
         borderRadius: 15,
-        justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        flex: 1, flexDirection: "row", justifyContent: "space-between"
     },
     title: {
-        fontWeight: 600,
-        fontSize: 20,
+        fontWeight: 500,
+        fontSize: 18,
         color: '#b0c3bf'
     },
     subTitle: {

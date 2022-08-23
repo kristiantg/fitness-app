@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, View, Image, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { Ionicons } from '@expo/vector-icons';
 
 const DATA = [
@@ -52,7 +52,7 @@ const ExerciseListView = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{ backgroundColor: "#f3f3f3", borderTopLeftRadius: 40, borderTopRightRadius: 40, marginTop: 60, flex: 1 }}>
+            <View style={{ backgroundColor: "#f3f3f3", borderTopLeftRadius: 55, borderTopRightRadius: 55, marginTop: 60, flex: 1 }}>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}

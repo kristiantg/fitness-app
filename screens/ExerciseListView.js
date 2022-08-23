@@ -16,15 +16,19 @@ const DATA = [
     },
     {
         id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "AB FOAM ROLL",
+        title: "TEST",
         subTitle: "Skuldre, bryst, triceps"
     },
 ];
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-        <Text style={[styles.title, textColor]}>{item.title}</Text>
-        <Text style={[styles.subTitle, textColor]}>{item.subTitle} </Text>
+        <Image style={styles.image} source={require("../assets/testExercise.png")}></Image>
+        <View style={{ marginLeft: 20, alignItems: 'flex-end' }}>
+            <Text style={[styles.title, textColor]}>{item.title}</Text>
+            <Text style={[styles.subTitle, textColor]}>{item.subTitle} </Text>
+        </View>
+        <Ionicons name="information-circle" size={24} style={{ marginLeft: 20 }} color="black" />
     </TouchableOpacity>
 );
 
@@ -36,16 +40,12 @@ const ExerciseListView = () => {
         const color = item.id === selectedId ? '#b5cbc5' : '#b5cbc5';
 
         return (
-            <View style={{ backgroundColor: "#fefefe", flexDirection: "row", alignItems: "center", borderRadius: 14, margin: 10, marginHorizontal: 24, paddingHorizontal: 10 }}>
-                <Image style={styles.image} source={require("../assets/testExercise.png")}></Image>
-                <Item
-                    item={item}
-                    onPress={() => setSelectedId(item.id)}
-                    backgroundColor={{ backgroundColor }}
-                    textColor={{ color }}
-                />
-                <Ionicons name="information-circle" size={24} color="black" />
-            </View>
+            <Item
+                item={item}
+                onPress={() => setSelectedId(item.id)}
+                backgroundColor={{ backgroundColor }}
+                textColor={{ color }}
+            />
         );
     };
 
@@ -74,12 +74,16 @@ const styles = StyleSheet.create({
         flex: 0.8,
         resizeMode: "contain",
         height: '100%',
-        width: '100%'
+        width: '100%',
     },
     item: {
+        padding: 10,
         marginVertical: 8,
         marginHorizontal: 16,
-        padding: 6
+        flexDirection: "row",
+        borderRadius: 15,
+        justifyContent: "center",
+        alignItems: "center"
     },
     title: {
         fontWeight: 600,
@@ -87,7 +91,8 @@ const styles = StyleSheet.create({
         color: '#b0c3bf'
     },
     subTitle: {
-        fontSize: 14,
+        fontSize: 12,
+        marginLeft: 10,
         color: '#b0c3bf'
     }
 });

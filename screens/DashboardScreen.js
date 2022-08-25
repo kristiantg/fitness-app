@@ -34,7 +34,7 @@ function DashboardScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f3ebec",
+        backgroundColor: "#f4f4f4",
     },
     profilePic: {
         height: 80,

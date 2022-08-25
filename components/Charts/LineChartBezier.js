@@ -1,42 +1,32 @@
-import { LineChart } from "react-native-chart-kit";
+import React from 'react'
+import { Path } from 'react-native-svg'
+import { AreaChart, Grid } from 'react-native-svg-charts'
+import * as shape from 'd3-shape'
 
 function LineChartBezier(props) {
-    const data = {
-        datasets: [
-            {
-                data: [20, 45, 28, 65, 32, 43],
-                strokeWidth: 2 // optional
-            }
-        ],
-    };
+    const data = [50, 10, 40, 95, 85, 91, 35, 53, 24, 50]
 
-    const chartConfig = {
-        backgroundGradientFrom: "transparent",
-        backgroundGradientFromOpacity: 1,
-        backgroundGradientTo: "transparent",
-        backgroundGradientToOpacity: 1,
-        color: () => "#a7c9c8",
-        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-        style: {
-            borderRadius: 16,
-        }
-    }
+    const Line = ({ line }) => (
+        <Path
+            key={'line'}
+            d={line}
+            stroke={'#b3c8c3'}
+            fill={'none'}
+            style={{}}
+        />
+    )
 
     return (
-        <LineChart
+        <AreaChart
+            style={{ height: 100, borderBottomLeftRadius: 25, borderBottomRightRadius: 25 }}
             data={data}
-            width={props.width}
-            height={props.height}
-            withShadow={true}
-            withInnerLines={false}
-            withOuterLines={false}
-            withDots={false}
-            withHorizontalLabels={false}
-            withVerticalLabels={false}
-            chartConfig={chartConfig}
-            bezier
-        />
-    );
+            contentInset={{ top: 30 }}
+            curve={shape.curveNatural}
+            svg={{ fill: '#e4eeed' }}
+        >
+            <Line />
+        </AreaChart>
+    )
 }
 
 export default LineChartBezier;

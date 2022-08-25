@@ -1,53 +1,59 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
-const local_data = [
+const data = [
     {
         value: '1',
-        lable: 'Country 1',
+        label: 'Country 1',
     },
     {
         value: '2',
-        lable: 'Country 2',
+        label: 'Country 2',
     },
     {
         value: '3',
-        lable: 'Country 3',
+        label: 'Country 3',
     },
     {
         value: '4',
-        lable: 'Country 4',
+        label: 'Country 4',
     },
     {
         value: '5',
-        lable: 'Country 5',
+        label: 'Country 5',
     },
 ];
 
+const renderItem = (item) => {
+    return (
+        <View style={styles.item}>
+            <Text style={styles.textItem}>{item.label}</Text>
+        </View>
+    );
+};
+
 const DropDownSelect = _props => {
-    const [country, setCountry] = useState('');
+    const [value, setValue] = useState(null);
 
     return (
         <Dropdown
             style={styles.dropdown}
-            selectedTextStyle={styles.selectedTextStyle}
             placeholderStyle={styles.placeholderStyle}
-            maxHeight={200}
-            value={country}
-            data={local_data}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={data}
+            maxHeight={300}
+            labelField="label"
             valueField="value"
-            labelField="lable"
             placeholder={_props.lable}
-            containerStyle={{
-                fontSize: 17,
-                color: '#b0c3bf',
-            }
-            }
             searchPlaceholder="Search..."
-            onChange={e => {
-                setCountry(e.value);
+            value={value}
+            onChange={item => {
+                setValue(item.value);
             }}
+            renderItem={renderItem}
         />
     );
 };
@@ -61,12 +67,22 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 15,
         paddingHorizontal: 10,
-
+        fontSize: 12,
+        marginLeft: 10,
+        color: '#b0c3bf'
+    },
+    item: {
+        padding: 8
     },
     imageStyle: {
         width: 24,
         height: 24,
         borderRadius: 15,
+    },
+    textItem: {
+        fontSize: 12,
+        marginLeft: 10,
+        color: '#b0c3bf'
     },
     placeholderStyle: {
         fontSize: 12,

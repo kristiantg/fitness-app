@@ -1,11 +1,13 @@
 
-import { StyleSheet, Text, View, Image, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import CardComponent from "../components/CardComponent"
+import { LinearGradient } from 'expo-linear-gradient';
 
 function DashboardScreen() {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <View style={styles.container}>
-                <View style={styles.nameArea} />
+                <LinearGradient colors={['#9cbebf', '#b4c8c3']} style={styles.nameArea} />
                 <View style={{ height: 150, justifyContent: "center", alignItems: "center" }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Text style={styles.profileText}>
@@ -18,7 +20,7 @@ function DashboardScreen() {
                 <View>
                     <Text style={styles.contentTitle}>DENNE UGE</Text>
                     <View style={styles.cardContainer}>
-                        <View style={styles.card} />
+                        <CardComponent />
                         <View style={styles.card} />
                         <View style={styles.card} />
                         <View style={styles.card} />

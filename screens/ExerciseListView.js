@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FlatList, SafeAreaView, View, Image, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
-import DropDownPicker from 'react-native-dropdown-picker';
+import DropDownSelect from "../components/DropDownSelect"
 
 const DATA = [
     {
@@ -22,6 +22,7 @@ const DATA = [
     },
 ];
 
+
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
         <Image style={styles.image} source={require("../assets/testExercise.png")}></Image>
@@ -34,14 +35,6 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 const ExerciseListView = () => {
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        { label: 'Apple', value: 'apple' },
-        { label: 'Banana', value: 'banana' }
-    ]);
-
-
     const [selectedId, setSelectedId] = useState(null);
 
     const renderItem = ({ item }) => {
@@ -62,17 +55,12 @@ const ExerciseListView = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ backgroundColor: "#f3f3f3", borderTopLeftRadius: 40, borderTopRightRadius: 40, marginTop: 60, flex: 1 }}>
-                <View style={{ justifyContent: "space-around", flexDirection: "row", marginTop: 40, marginHorizontal: 12, marginBottom: 10 }}>
-                    <Text style={{
-                        width: '100%', backgroundColor: "white", borderRadius: 12, textAlign: "center", alignSelf: "center", padding: 10, marginHorizontal: 4, fontSize: 14, color: '#b0c3bf'
-                    }}>Kropsdel</Text>
-                    <Text style={{
-                        width: '100%', backgroundColor: "white", borderRadius: 12, textAlign: "center", alignSelf: "center", padding: 10, marginHorizontal: 4, fontSize: 14, color: '#b0c3bf'
-                    }}>Type</Text>
-                    <Text style={{
-                        width: '100%', backgroundColor: "white", borderRadius: 12, textAlign: "center", alignSelf: "center", padding: 10, marginHorizontal: 4, fontSize: 14, color: '#b0c3bf'
-                    }}>Søg</Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-around", marginHorizontal: 10, marginVertical: 20 }}>
+                    <DropDownSelect lable="Kropsdel" />
+                    <DropDownSelect lable="Type" />
+                    <DropDownSelect lable="Søg" />
                 </View>
+
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -98,6 +86,7 @@ const styles = StyleSheet.create({
     },
     item: {
         padding: 10,
+        paddingVertical: 16,
         marginVertical: 8,
         marginHorizontal: 16,
         flexDirection: "row",

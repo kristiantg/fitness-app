@@ -1,31 +1,20 @@
 import React from 'react'
-import { Path } from 'react-native-svg'
-import { AreaChart, Grid } from 'react-native-svg-charts'
-import * as shape from 'd3-shape'
+import { View } from 'react-native'
+import { VictoryArea, VictoryClipContainer } from 'victory-native'
 
 function LineChartBezier(props) {
-    const data = [50, 10, 40, 95, 85, 91, 35, 53, 24, 50]
-
-    const Line = ({ line }) => (
-        <Path
-            key={'line'}
-            d={line}
-            stroke={'#b3c8c3'}
-            fill={'none'}
-            style={{}}
-        />
-    )
+    const data = [50, 10, 10, 95, 85, 91, 35, 53, 24, 50]
 
     return (
-        <AreaChart
-            style={{ height: 100, borderBottomLeftRadius: 25, borderBottomRightRadius: 25 }}
-            data={data}
-            contentInset={{ top: 30 }}
-            curve={shape.curveNatural}
-            svg={{ fill: '#e4eeed' }}
-        >
-            <Line />
-        </AreaChart>
+        <View>
+            <VictoryArea
+                padding={{ right: 0, left: 0, top: 30, bottom: 25 }}
+                interpolation="natural"
+                groupComponent={<></>}
+                style={{ data: { stroke: "#b1c4c0", strokeWidth: 5, strokeLinecap: "round", fill: "#e4eeed" } }}
+                data={data}
+            />
+        </View>
     )
 }
 

@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { VictoryArea, VictoryClipContainer } from 'victory-native'
 
 function LineChartBezier(props) {
-    const data = [14, 1, 14, 95, 85, 91, 35, 53, 24, 50]
+    const data = [14, 1, 14, 40, 85, 10, 35, 53, 24, 50]
 
     return (
         <View>

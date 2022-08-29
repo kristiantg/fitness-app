@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         flexDirection: 'row',
+        justifyContent: "space-evenly",
         flexWrap: "wrap",
-        margin: 10
     }
 });
 

@@ -9,7 +9,7 @@ function LineChartBezier(props) {
         <View>
             <VictoryArea
                 y0={() => -15}
-                padding={{ right: 0, left: 0, top: 30, bottom: 25 }}
+                padding={{ right: 0, left: 0, top: 30, bottom: 24 }}
                 interpolation="natural"
                 groupComponent={<></>}
                 style={{ data: { stroke: "#b1c4c0", strokeWidth: 5, strokeLinecap: "round", fill: "#e4eeed" } }}

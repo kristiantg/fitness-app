@@ -16,6 +16,7 @@ import ProfileDisplay from '../components/Banner/ProfileDisplay';
 import Water from '../components/Charts/Water';
 import BarChartVertical from '../components/Charts/BarChartVertical';
 import { ScrollView } from 'react-native-web';
+import Sleep from '../components/Charts/Sleep';
 
 function DashboardScreen() {
     return (
@@ -28,13 +29,12 @@ function DashboardScreen() {
             <ScrollView>
                 <View style={styles.cardContainer}>
                     <CardComponent bottomPadding={true} graph={<LineChartBezier />} title={"Aktivitet"} icon={<Ionicons name="trending-up-outline" size={20} color="white" />} />
-                    <CardComponent graph={<ProgressChartCircle goal={1000} value={219} text={"minutter"} />} title={"Træning"} icon={<Ionicons name="timer-outline" size={20} color="white" />} />
+                    <CardComponent graph={<ProgressChartCircle goal={1000} value={500} text={"minutter"} />} title={"Træning"} icon={<Ionicons name="timer-outline" size={20} color="white" />} />
                     <CardComponent graph={<BarChartHorizontal />} title={"Kategorier"} icon={<Ionicons name="body-outline" size={20} color="white" />} />
                     <CardComponent graph={<Water />} title={"Vand"} icon={<Ionicons name="water-outline" size={20} color="white" />} />
                     <CardComponent graph={<BarChartVertical />} title={"Skridt"} icon={<Foundation name="foot" size={20} color="white" />} />
                     <CardComponent graph={<ProgressChartCircle value={332} goal={600} text={"kcal"} />} title={"Forbrændt"} icon={<FontAwesome5 name="head-side-cough" size={16} color="white" />} />
-                    <CardComponent graph={<ProgressChartCircle value={332} goal={600} text={"kcal"} />} title={"Forbrændt"} icon={<FontAwesome5 name="head-side-cough" size={16} color="white" />} />
-                    <CardComponent graph={<ProgressChartCircle value={332} goal={600} text={"kcal"} />} title={"Forbrændt"} icon={<FontAwesome5 name="head-side-cough" size={16} color="white" />} />
+                    <CardComponent graph={<Sleep />} title={"Søvn"} icon={<FontAwesome5 name="bed" size={16} color="white" />} />
                 </View>
             </ScrollView>
         </SafeAreaView>

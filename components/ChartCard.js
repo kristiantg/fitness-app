@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import CardIcon from './CardIcon';
 
 
-function CardComponent({ graph, icon, title, bottomPadding }) {
+function CardComponent({ graph, icon, title, bottomPadding = false }) {
     return (
         <View style={styles.card}>
             <View style={{ flex: 0.2, flexDirection: "row", justifyContent: "space-around", marginTop: 14 }}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { VictoryBar, VictoryLabel, VictoryAxis, VictoryChart, } from "victory-native"
 
 function BarChartHorizontal(props) {

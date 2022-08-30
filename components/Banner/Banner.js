@@ -5,7 +5,7 @@ import colors from '../../config/colors';
 
 function Banner() {
     return (
-        <LinearGradient end={{ x: 0.4, y: 0.2 }} colors={[colors.green_primary, colors.green_secondary]} style={styles.banner} />
+        <LinearGradient end={{ x: 0.5, y: 0.7 }} colors={[colors.green_secondary, colors.green_primary]} style={styles.banner} />
     );
 }
 

@@ -3,21 +3,24 @@ import { View, Text } from 'react-native'
 
 import { VictoryPie } from 'victory-native'
 
+import colors from '../../config/colors';
+
 
 
 function ProgressChartCircle({ text, value, goal }) {
     return (
-        <View style={{ alignSelf: "center", height: 160, width: 160, top: -35 }}>
+        <View style={{ alignSelf: "center", flex: 1, top: -10 }}>
             <VictoryPie
                 padAngle={0}
                 labelComponent={<></>}
-                innerRadius={75}
-                width={220} height={220}
+                innerRadius={45}
+                padding={{ right: 0, left: 0, top: 0, bottom: 0 }}
+                width={110} height={110}
                 data={[{ 'key': "", 'y': value }, { 'key': "", 'y': (goal - value) }]}
-                colorScale={["#19B3A6", "#EEEEEE"]}
+                colorScale={[colors.green_primary, "#EEEEEE"]}
             />
-            <Text style={{ position: "absolute", alignSelf: "center", top: 45, fontWeight: "600", fontSize: 40, color: "#a5cec6" }}>{value}</Text>
-            <Text style={{ position: "absolute", alignSelf: "center", top: 85, color: "#a5cec6" }}>{text}</Text>
+            <Text style={{ position: "absolute", alignSelf: "center", top: 25, fontWeight: "600", fontSize: 40, color: "#a5cec6" }}>{value}</Text>
+            <Text style={{ position: "absolute", alignSelf: "center", top: 65, color: "#a5cec6" }}>{text}</Text>
         </View>
     );
 }

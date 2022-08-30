@@ -5,7 +5,7 @@ import CardIcon from './CardIcon';
 
 function CardComponent({ graph, icon, title, bottomPadding = false }) {
     return (
-        <View style={styles.card}>
+        <View style={[styles.card, styles.shadowProp]}>
             <View style={{ flex: 0.2, flexDirection: "row", justifyContent: "space-around", marginTop: 14 }}>
                 <Text style={styles.cardTitle}>{title}</Text>
                 <CardIcon icon={icon} />
@@ -14,11 +14,8 @@ function CardComponent({ graph, icon, title, bottomPadding = false }) {
                 <View style={{ width: 160, height: 100 }}>
                     {graph}
                 </View>
-                {bottomPadding && <View style={{ backgroundColor: "#e4eeed", height: 25, width: 160, borderBottomLeftRadius: 25, borderBottomRightRadius: 25 }} />}
-
+                {bottomPadding && <View style={{ backgroundColor: "#e4eeed", height: 17, width: 160, borderBottomLeftRadius: 25, borderBottomRightRadius: 25 }} />}
             </View>
-
-
         </View>
     );
 }
@@ -45,7 +42,13 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontWeight: '500',
         color: '#b0c3bf'
-    }
+    },
+    shadowProp: {
+        shadowColor: '#171717',
+        shadowOffset: { width: -1, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
 });
 
 export default CardComponent;

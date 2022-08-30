@@ -15,7 +15,7 @@ import Banner from '../components/Banner/Banner';
 import ProfileDisplay from '../components/Banner/ProfileDisplay';
 import Water from '../components/Charts/Water';
 import BarChartVertical from '../components/Charts/BarChartVertical';
-import { ScrollView } from 'react-native-web';
+import { ScrollView } from 'react-native';
 import Sleep from '../components/Charts/Sleep';
 
 function DashboardScreen() {

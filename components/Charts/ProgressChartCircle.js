@@ -19,7 +19,7 @@ function ProgressChartCircle({ text, value, goal }) {
                 data={[{ 'key': "", 'y': value }, { 'key': "", 'y': (goal - value) }]}
                 colorScale={[colors.green_primary, "#EEEEEE"]}
             />
-            <Text style={{ position: "absolute", alignSelf: "center", top: 25, fontWeight: "600", fontSize: 40, color: "#a5cec6" }}>{value}</Text>
+            <Text style={{ position: "absolute", alignSelf: "center", top: 28, fontWeight: "600", fontSize: 32, color: "#a5cec6" }}>{value}</Text>
             <Text style={{ position: "absolute", alignSelf: "center", top: 65, color: "#a5cec6" }}>{text}</Text>
         </View>
     );

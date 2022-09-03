@@ -1,9 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { SimpleLineIcons } from '@expo/vector-icons';
 import DashboardScreen from './screens/DashboardScreen';
 import ExerciseListView from './screens/ExerciseListView';
+import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import ExerciseTemplates from './screens/ExerciseTemplates';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,10 +16,27 @@ function MyTabs() {
       <Tab.Screen name="Dashboard" component={DashboardScreen} options={{
         tabBarLabel: 'Dashboard',
         tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="home" color={color} size={size} />
+          <SimpleLineIcons name="graph" size={size} color={color} />
         ),
       }} />
-      <Tab.Screen name="ExerciseList" component={ExerciseListView} />
+      <Tab.Screen name="Templates" component={ExerciseTemplates} options={{
+        tabBarLabel: 'Templates',
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="weight-lifter" size={size} color={color} />
+        ),
+      }} />
+      <Tab.Screen name="Statistics" component={ExerciseListView} options={{
+        tabBarLabel: 'Statistics',
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="star" size={size} color={color} />
+        ),
+      }} />
+      <Tab.Screen name="Profile" component={ExerciseListView} options={{
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="ios-person-circle" size={size} color={color} />
+        ),
+      }} />
     </Tab.Navigator>
   );
 }

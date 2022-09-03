@@ -11,7 +11,7 @@ function LineChartBezier(props) {
             width={160} height={130}
             interpolation="natural"
             groupComponent={<></>}
-            style={{ flex: 1, data: { stroke: "#b1c4c0", strokeWidth: 3, strokeLinecap: "round", fill: "#e4eeed" } }}
+            style={{ flex: 1, data: { stroke: "#b1c4c0", strokeWidth: 2, strokeLinecap: "round", fill: "#e4eeed" } }}
             data={data}
         />
     )

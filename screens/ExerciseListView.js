@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         flex: 1, flexDirection: "row", justifyContent: "space-between"
     },
     title: {
-        fontWeight: 500,
+        fontWeight: '500',
         fontSize: 18,
         color: '#b0c3bf'
     },

@@ -7,6 +7,7 @@ import ExerciseListView from './screens/ExerciseListView';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import ExerciseTemplates from './screens/ExerciseTemplates';
+import WelcomeScreen from './screens/WelcomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +32,7 @@ function MyTabs() {
           <FontAwesome name="star" size={size} color={color} />
         ),
       }} />
-      <Tab.Screen name="Profile" component={ExerciseListView} options={{
+      <Tab.Screen name="Profile" component={WelcomeScreen} options={{
         tabBarLabel: 'Profile',
         tabBarIcon: ({ color, size }) => (
           <Ionicons name="ios-person-circle" size={size} color={color} />

@@ -1,17 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { SimpleLineIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, SimpleLineIcons, FontAwesome, Ionicons } from '@expo/vector-icons';
 import DashboardScreen from './screens/DashboardScreen';
 import ExerciseListView from './screens/ExerciseListView';
-import { FontAwesome } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import ExerciseTemplates from './screens/ExerciseTemplates';
 import WelcomeScreen from './screens/WelcomeScreen';
+import useGetOnboardingStatus from './utils/useGetOnboardingStatus';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-function MyTabs() {
+function HomeTabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: 'black' }, tabBarActiveTintColor: 'white' }}>
       <Tab.Screen name="Dashboard" component={DashboardScreen} options={{
@@ -43,9 +43,23 @@ function MyTabs() {
 }
 
 export default function App() {
+  const { isFirstLaunch, isLoading: onboardingIsLoading } = useGetOnboardingStatus();
+  let initialRoute = "Home";
+
+  if (onboardingIsLoading) {
+    return null;
+  }
+
+  if (isFirstLaunch) {
+    initialRoute = "Welcome";
+  }
+
   return (
     <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
-  );
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={initialRoute}>
+        <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>)
+
 } 

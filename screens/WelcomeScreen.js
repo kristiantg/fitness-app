@@ -1,9 +1,12 @@
 import React from 'react';
 import { Ionicons, FontAwesome, SimpleLineIcons } from '@expo/vector-icons';
-import { SafeAreaView, View, Text, StyleSheet, Image } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import colors from '../config/colors';
 
 function WelcomeScreen() {
+    const navigation = useNavigation();
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
@@ -43,10 +46,12 @@ function WelcomeScreen() {
                     </View>
                 </View>
             </View>
-            <View style={{ alignSelf: "center", padding: 26, marginBottom: 10, paddingHorizontal: 50, backgroundColor: colors.green_primary, borderRadius: 30 }}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+                style={{ alignSelf: "center", padding: 16, marginBottom: 16, paddingHorizontal: 50, backgroundColor: colors.green_primary, borderRadius: 20 }}>
                 <Text style={{ color: "white", fontWeight: '700', fontSize: 26 }}>KOM IGANG!</Text>
-            </View>
-        </SafeAreaView>
+            </TouchableOpacity>
+        </SafeAreaView >
     );
 }
 

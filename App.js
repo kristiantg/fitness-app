@@ -7,9 +7,18 @@ import ExerciseTemplates from './screens/ExerciseTemplates';
 import WelcomeScreen from './screens/WelcomeScreen';
 import useGetOnboardingStatus from './utils/useGetOnboardingStatus';
 import { createStackNavigator } from '@react-navigation/stack';
+import AddExerciseScreen from './screens/AddExerciseScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+function useResetScreenOnBlur() {
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => navigation.setParams({ screen: undefined, params: undefined });
+    }, [navigation])
+  );
+};
 
 function HomeTabs() {
   return (
@@ -20,18 +29,22 @@ function HomeTabs() {
           <SimpleLineIcons name="graph" size={size} color={color} />
         ),
       }} />
-      <Tab.Screen name="Templates" component={ExerciseTemplates} options={{
+      <Tab.Screen name="TemplateStack" component={TemplateStackScreen} options={{
+        unmountOnBlur: true,
         tabBarLabel: 'Templates',
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="weight-lifter" size={size} color={color} />
         ),
       }} />
-      <Tab.Screen name="Statistics" component={ExerciseListView} options={{
-        tabBarLabel: 'Statistics',
-        tabBarIcon: ({ color, size }) => (
-          <FontAwesome name="star" size={size} color={color} />
-        ),
-      }} />
+      <Tab.Screen
+        name="Statistics"
+        component={ExerciseListView}
+        options={{
+          tabBarLabel: 'Statistics',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="star" size={size} color={color} />
+          ),
+        }} />
       <Tab.Screen name="Profile" component={WelcomeScreen} options={{
         tabBarLabel: 'Profile',
         tabBarIcon: ({ color, size }) => (
@@ -39,6 +52,17 @@ function HomeTabs() {
         ),
       }} />
     </Tab.Navigator>
+  );
+}
+
+const TemplateStack = createStackNavigator();
+
+function TemplateStackScreen() {
+  return (
+    <TemplateStack.Navigator screenOptions={{ headerShown: false }}>
+      <TemplateStack.Screen name="ExerciseTemplates" component={ExerciseTemplates} />
+      <TemplateStack.Screen name="AddExerciseTemplate" component={AddExerciseScreen} />
+    </TemplateStack.Navigator>
   );
 }
 
@@ -57,8 +81,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={initialRoute}>
-        <Stack.Screen name="Home" component={HomeTabs} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Home" component={HomeTabs} />
       </Stack.Navigator>
     </NavigationContainer>)
 

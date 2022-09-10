@@ -3,13 +3,14 @@ import { View, Text, Button, TouchableHighlight, SafeAreaView, ScrollView } from
 import Banner from '../components/Banner/Banner';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
 
 import colors from '../config/colors';
 import DropDownSelect from '../components/DropDownSelect';
 import BarChartHorizontal from '../components/Charts/BarChartHorizontal';
+import { useNavigation } from '@react-navigation/native';
 
 function ExerciseTemplates() {
+    const navigation = useNavigation();
     let hasTemplates = false;
 
     return (
@@ -41,7 +42,7 @@ function ExerciseTemplates() {
                     </View>
                 </ScrollView>
             }
-            <TouchableHighlight onPress={() => { }} style={{ alignSelf: "center", position: "absolute", bottom: 40, backgroundColor: "black", height: 90, width: 90, borderRadius: 45, alignItems: "center", justifyContent: "center" }}>
+            <TouchableHighlight onPress={() => navigation.navigate('AddExerciseTemplate')} style={{ alignSelf: "center", position: "absolute", bottom: 40, backgroundColor: "black", height: 90, width: 90, borderRadius: 45, alignItems: "center", justifyContent: "center" }}>
                 <Feather name="plus" size={34} color="white" />
             </TouchableHighlight>
         </SafeAreaView>

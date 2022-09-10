@@ -27,7 +27,15 @@ function BarChartHorizontal(props) {
                 data={data}
                 horizontal={true}
                 cornerRadius={{ bottom: 10, top: 10 }}
-                style={{ data: { fill: "#414141", width: 20, }, labels: { fill: "white", fontSize: 14, fontWeight: '600', textAnchor: "middle" } }}
+                style={{
+                    data: {
+                        fill: ({ datum }) =>
+                            datum.name.toLowerCase() == "arme" ? '#eff3f2' :
+                                datum.name.toLowerCase() == "ben" ? '#707070' : '#a6a6a6',
+                        width: 20
+                    }
+                    , labels: { fill: "white", fontSize: 14, fontWeight: '600', textAnchor: "middle" }
+                }}
                 x="name"
                 y="value"
                 labels={({ datum }) => datum.percent}

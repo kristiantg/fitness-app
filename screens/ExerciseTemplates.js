@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import colors from '../config/colors';
 import DropDownSelect from '../components/DropDownSelect';
+import BarChartHorizontal from '../components/Charts/BarChartHorizontal';
 
 function ExerciseTemplates() {
     let hasTemplates = false;
@@ -63,9 +64,12 @@ function TemplateCard(props) {
                     <Text style={{ color: colors.green_primary, fontStyle: "italic", padding: 10, textAlign: "center", fontSize: 16 }}>
                         Squat, Leg Extension, Walking Lunges, Deadlift
                     </Text>
+                    <BarChartHorizontal />
                 </View>
             </View>
-            <Button style={{ backgroundColor: 'gray' }} title='start'></Button>
+            <TouchableHighlight style={{ backgroundColor: colors.secondary, padding: 10, margin: 20, borderRadius: 25, justifyContent: "center", alignItems: "center" }}>
+                <Text style={{ textTransform: "uppercase", color: colors.green_primary, fontWeight: '700' }}>start</Text>
+            </TouchableHighlight>
         </View>
     );
 }

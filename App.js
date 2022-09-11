@@ -12,14 +12,6 @@ import AddExerciseScreen from './screens/AddExerciseScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function useResetScreenOnBlur() {
-  useFocusEffect(
-    React.useCallback(() => {
-      return () => navigation.setParams({ screen: undefined, params: undefined });
-    }, [navigation])
-  );
-};
-
 function HomeTabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: 'black' }, tabBarActiveTintColor: 'white' }}>
@@ -30,7 +22,6 @@ function HomeTabs() {
         ),
       }} />
       <Tab.Screen name="TemplateStack" component={TemplateStackScreen} options={{
-        unmountOnBlur: true,
         tabBarLabel: 'Templates',
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="weight-lifter" size={size} color={color} />
@@ -61,7 +52,7 @@ function TemplateStackScreen() {
   return (
     <TemplateStack.Navigator screenOptions={{ headerShown: false }}>
       <TemplateStack.Screen name="ExerciseTemplates" component={ExerciseTemplates} />
-      <TemplateStack.Screen name="AddExerciseTemplate" component={AddExerciseScreen} />
+
     </TemplateStack.Navigator>
   );
 }
@@ -82,6 +73,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={initialRoute}>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="AddExerciseToTemplate" component={ExerciseListView} />
+        <Stack.Screen name="AddExerciseTemplate" component={AddExerciseScreen} />
         <Stack.Screen name="Home" component={HomeTabs} />
       </Stack.Navigator>
     </NavigationContainer>)

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, View, Image, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, View, Image, TouchableHighlight, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
 import DropDownSelect from "../components/DropDownSelect"
+import colors from "../config/colors"
+import { Feather } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 const DATA = [
     {
@@ -23,6 +26,8 @@ const DATA = [
 ];
 
 
+
+
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
         <Image style={styles.image} source={require("../assets/testExercise.png")}></Image>
@@ -34,17 +39,30 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </TouchableOpacity>
 );
 
-const ExerciseListView = () => {
-    const [selectedId, setSelectedId] = useState(null);
+const ExerciseListView = ({ route }) => {
+    const { setExercises } = route.params;
+    const navigation = useNavigation();
+    const [selectedId, setSelectedId] = useState([]);
+    const anySelected = selectedId.length > 0;
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#fefefe" : "#fefefe";
-        const color = item.id === selectedId ? '#b5cbc5' : '#b5cbc5';
+        const { title, id } = item;
+        const isSelected = selectedId.filter((i) => i === id).length > 0;
+
+
+        const backgroundColor = isSelected ? colors.secondary : "#fefefe";
+        const color = isSelected ? '#b5cbc5' : '#b5cbc5';
 
         return (
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
+                onPress={() => {
+                    if (isSelected) {
+                        setSelectedId((prev) => prev.filter((i) => i !== id));
+                    } else {
+                        setSelectedId(prev => [...prev, id])
+                    }
+                }}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
@@ -53,30 +71,35 @@ const ExerciseListView = () => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={{ backgroundColor: "#f3f3f3", borderTopLeftRadius: 40, borderTopRightRadius: 40, marginTop: 60, flex: 1 }}>
-                <View style={{ flexDirection: "row", justifyContent: "space-around", marginHorizontal: 10, marginVertical: 20 }}>
-                    <DropDownSelect lable="Kropsdel" />
-                    <DropDownSelect lable="Type" />
-                    <DropDownSelect lable="Søg" />
+        <>
+            <SafeAreaView style={styles.container}>
+                <View style={{ backgroundColor: "#f3f3f3", borderTopLeftRadius: 40, borderTopRightRadius: 40, marginTop: 60, flex: 1 }}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-around", marginHorizontal: 10, marginVertical: 20 }}>
+                        <DropDownSelect lable="Kropsdel" />
+                        <DropDownSelect lable="Type" />
+                        <DropDownSelect lable="Søg" />
+                    </View>
+
+                    <FlatList
+                        data={DATA}
+                        renderItem={renderItem}
+                        keyExtractor={(item) => item.id}
+                        extraData={selectedId}
+                    />
                 </View>
+                {anySelected ? <TouchableHighlight onPress={() => { setExercises(selectedId); navigation.goBack(); }} style={{ alignSelf: "center", position: "absolute", bottom: 30, backgroundColor: "black", height: 90, width: 90, borderRadius: 45, alignItems: "center", justifyContent: "center" }}>
+                    <Feather name="check" size={34} color="white" />
+                </TouchableHighlight> : <></>}
 
-                <FlatList
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                    extraData={selectedId}
-                />
-            </View>
-
-        </SafeAreaView>
+            </SafeAreaView>
+        </>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#a7c9c8"
+        flex: 0.95,
+        backgroundColor: colors.green_primary
     },
     image: {
         flex: 0.5,

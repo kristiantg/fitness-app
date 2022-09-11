@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Button, TouchableHighlight, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Button, TouchableHighlight, SafeAreaView, ScrollView, Pressable } from 'react-native';
 import Banner from '../components/Banner/Banner';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -15,6 +15,7 @@ function ExerciseTemplates() {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
+
             <View style={{ height: 200, justifyContent: "center", alignItems: "center" }}>
                 <Banner />
                 <>

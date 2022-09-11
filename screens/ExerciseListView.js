@@ -19,12 +19,37 @@ const DATA = [
         subTitle: "Skuldre, bryst, triceps"
     },
     {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
+        id: 1,
         title: "TEST",
         subTitle: "Skuldre, bryst, triceps"
     },
 ];
 
+function getExerciseObjFromID(ids){
+    
+    
+    let exerciseMetadata = DATA.filter((item) => {
+          return ids.indexOf(item.id) !== -1;
+        });
+
+    const exerciseArray = exerciseMetadata.map(data => {
+        return {
+            exerciseTitle: data.title,
+            exerciseSubtitle: data.subTitle,
+            sets: [
+                {
+                    setNumber: 1,
+                    weight: 22,
+                    reps: 8
+                }
+            ]
+        }
+    })
+
+    console.log(exerciseArray)
+
+    return exerciseArray;
+}
 
 
 
@@ -87,7 +112,7 @@ const ExerciseListView = ({ route }) => {
                         extraData={selectedId}
                     />
                 </View>
-                {anySelected ? <TouchableHighlight onPress={() => { setExercises(selectedId); navigation.goBack(); }} style={{ alignSelf: "center", position: "absolute", bottom: 30, backgroundColor: "black", height: 90, width: 90, borderRadius: 45, alignItems: "center", justifyContent: "center" }}>
+                {anySelected ? <TouchableHighlight onPress={() => { setExercises(currentExercises => [...currentExercises, ...getExerciseObjFromID(selectedId)]); navigation.goBack(); }} style={{ alignSelf: "center", position: "absolute", bottom: 30, backgroundColor: "black", height: 90, width: 90, borderRadius: 45, alignItems: "center", justifyContent: "center" }}>
                     <Feather name="check" size={34} color="white" />
                 </TouchableHighlight> : <></>}
 

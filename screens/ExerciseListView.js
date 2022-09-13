@@ -25,12 +25,12 @@ const DATA = [
     },
 ];
 
-function getExerciseObjFromID(ids){
-    
-    
+function getExerciseObjFromID(ids) {
+
+
     let exerciseMetadata = DATA.filter((item) => {
-          return ids.indexOf(item.id) !== -1;
-        });
+        return ids.indexOf(item.id) !== -1;
+    });
 
     const exerciseArray = exerciseMetadata.map(data => {
         return {
@@ -38,15 +38,13 @@ function getExerciseObjFromID(ids){
             exerciseSubtitle: data.subTitle,
             sets: [
                 {
-                    setNumber: 1,
-                    weight: 22,
-                    reps: 8
+                    setNumber: 0,
+                    weight: 0,
+                    reps: 0
                 }
             ]
         }
     })
-
-    console.log(exerciseArray)
 
     return exerciseArray;
 }
@@ -71,9 +69,8 @@ const ExerciseListView = ({ route }) => {
     const anySelected = selectedId.length > 0;
 
     const renderItem = ({ item }) => {
-        const { title, id } = item;
+        const { id } = item;
         const isSelected = selectedId.filter((i) => i === id).length > 0;
-
 
         const backgroundColor = isSelected ? colors.secondary : "#fefefe";
         const color = isSelected ? '#b5cbc5' : '#b5cbc5';

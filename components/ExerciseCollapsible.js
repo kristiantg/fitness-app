@@ -16,22 +16,20 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import colors from '../config/colors'
 
-const CollapsibleTest = ({data}) => {
-    console.log("mapper data")
-    console.log(data)
+const CollapsibleTest = ({ data }) => {
 
     const exerciseCards = data.map((exercise, index) => {
         const content = exercise.sets.map((set, index) => {
-           return <ExerciseSets key={index} reps={set.reps} setNumber={set.setNumber} weight={set.weight}/>
+            return <ExerciseSets key={index} reps={set.reps} setNumber={set.setNumber} weight={set.weight} />
         })
 
-        return <View style={styles.container}><ExerciseCollapsible key={index} content={content} sets={'8x20'} title={exercise.exerciseTitle} subTitle={exercise.exerciseSubtitle}/></View>
+        return <View style={styles.container}><ExerciseCollapsible key={index} content={content} sets={'8x20'} title={exercise.exerciseTitle} subTitle={exercise.exerciseSubtitle} /></View>
     })
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
-                    {exerciseCards}
+                {exerciseCards}
             </ScrollView>
         </SafeAreaView>
     );
@@ -119,72 +117,72 @@ const styles = StyleSheet.create({
 });
 
 
-function ExerciseCollapsible({title, sets, subTitle, content}) {
+function ExerciseCollapsible({ title, sets, subTitle, content }) {
     const [collapsed, setCollapsed] = useState(true);
 
     const toggleExpanded = () => {
         setCollapsed(!collapsed);
     };
 
-  return (
-    <>
-      <TouchableOpacity onPress={toggleExpanded}>
-        <ExerciseHeader collapsed={collapsed} title={title} sets={sets} subTitle={subTitle}/>
-                    </TouchableOpacity>
-                    <Collapsible collapsed={collapsed} align="center">
-                        <View style={styles.content}>
-                           <ExerciseTableHeader/>
-                           {content}
-                        </View>
-                    </Collapsible>
-    </>
-  )
+    return (
+        <>
+            <TouchableOpacity onPress={toggleExpanded}>
+                <ExerciseHeader collapsed={collapsed} title={title} sets={sets} subTitle={subTitle} />
+            </TouchableOpacity>
+            <Collapsible collapsed={collapsed} align="center">
+                <View style={styles.content}>
+                    <ExerciseTableHeader />
+                    {content}
+                </View>
+            </Collapsible>
+        </>
+    )
 }
 
-function ExerciseSets({setNumber, weight, reps}) {
-  return (
-    <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
-        <View style={{ flex: 1, alignSelf: 'stretch'}}>
-            <Text style={[styles.headerSubText, {textAlign: 'center', padding: 5}]}>{setNumber}</Text>  
-        </View> 
-        <View style={{ flex: 1, alignSelf: 'stretch' }}>
-            <Text style={[styles.headerSubText, {textAlign: 'center', padding: 5}]}>{weight} kg</Text>
-        </View> 
-        <View style={{ flex: 1, alignSelf: 'stretch' }}>
-            <Text style={[styles.headerSubText, {textAlign: 'center', padding: 5}]}>{reps}</Text>     
-        </View> 
-    </View>
-  )
+function ExerciseSets({ setNumber, weight, reps }) {
+    return (
+        <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
+            <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                <Text style={[styles.headerSubText, { textAlign: 'center', padding: 5 }]}>{setNumber}</Text>
+            </View>
+            <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                <Text style={[styles.headerSubText, { textAlign: 'center', padding: 5 }]}>{weight} kg</Text>
+            </View>
+            <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                <Text style={[styles.headerSubText, { textAlign: 'center', padding: 5 }]}>{reps}</Text>
+            </View>
+        </View>
+    )
 }
 
 function ExerciseTableHeader() {
-  return (
-    <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row'  }}>
-    <View style={{ flex: 1, alignSelf: 'stretch'}}>
-        <Text style={[styles.headerSubText, {fontWeight: '600', textTransform: 'uppercase', textAlign: 'center'}]}>set</Text>    
-    </View> 
-    <View style={{ flex: 1, alignSelf: 'stretch' }}>
-        <Text style={[styles.headerSubText, {fontWeight: '600', textTransform: 'uppercase', textAlign: 'center'}]}>kg</Text> 
-    </View> 
-    <View style={{ flex: 1, alignSelf: 'stretch' }}>
-        <Text style={[styles.headerSubText, {fontWeight: '600', textTransform: 'uppercase', textAlign: 'center'}]}>reps</Text>     
-    </View> 
-</View>
-  )
+    return (
+        <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
+            <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                <Text style={[styles.headerSubText, { fontWeight: '600', textTransform: 'uppercase', textAlign: 'center' }]}>set</Text>
+            </View>
+            <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                <Text style={[styles.headerSubText, { fontWeight: '600', textTransform: 'uppercase', textAlign: 'center' }]}>kg</Text>
+            </View>
+            <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                <Text style={[styles.headerSubText, { fontWeight: '600', textTransform: 'uppercase', textAlign: 'center' }]}>reps</Text>
+            </View>
+        </View>
+    )
 }
 
-function ExerciseHeader({title, subTitle, sets, collapsed}) {
-  return (
-    <View style={styles.header}>
-    <Image style={styles.image} source={require("../assets/testExercise.png")}></Image>
-    <View style={{alignItems: "center", justifyContent: 'center'}}>
-        <Text style={styles.headerText}>{title}</Text>
-        <Text style={styles.headerSubText}>{subTitle}</Text>
-    </View>
-    <View>
-        <Text style={styles.headerSubText}>{sets} kg</Text>
-    </View>
-    {collapsed ? <FontAwesome name="angle-right" size={24} color={colors.green_primary}/> : <FontAwesome name="angle-down" size={24} color={colors.green_primary} />}
-</View>
-  )
+function ExerciseHeader({ title, subTitle, sets, collapsed }) {
+    return (
+        <View style={styles.header}>
+            <Image style={styles.image} source={require("../assets/testExercise.png")}></Image>
+            <View style={{ alignItems: "center", justifyContent: 'center' }}>
+                <Text style={styles.headerText}>{title}</Text>
+                <Text style={styles.headerSubText}>{subTitle}</Text>
+            </View>
+            <View>
+                <Text style={styles.headerSubText}>{sets} kg</Text>
+            </View>
+            {collapsed ? <FontAwesome name="angle-right" size={24} color={colors.green_primary} /> : <FontAwesome name="angle-down" size={24} color={colors.green_primary} />}
+        </View>
+    )
 }
